@@ -1,0 +1,49 @@
+<head>
+  <title>blog</title>
+</head>
+
+<body>
+  {{> main}}
+</body>
+
+<template name='main'>
+  {{> loginButtons}}
+  {{> header}}
+  {{> newPostForm}}
+  {{> posts}}
+</template>
+
+<template name='header'>
+  <h1><a href="/">My Blog</a></h1>
+  {{#if adminLoggedIn}} <!--This is a helper method that we are going to have to create. Meteor does not give it to us for free-->
+    <button name="">New Post</button>
+  {{/if}}
+</template>
+
+<template name='newPostForm'>
+  {{#if show}}
+    <div class="postForm">
+      <input type="text" name="" value="" id="title" placeholder="title" />
+      <input type="text" name="" value="" id="slug" placeholder="slug">
+      <textarea name="" rows="8" cols="40" id="content"></textarea>
+      <button name="">Post</button>
+    </div>
+  {{/if}}
+</template>
+
+<template name='posts'>
+  <div class="posts">
+    {{#each posts}}
+      {{> post}}
+    {{/each}}
+  </div>
+</template>
+
+<template name='post'>
+  <article id="">
+    <h1><a href="/{{slug}}">{{title}}</a></h1>
+    <p> {{createdOn}}</p>
+    <p> {{content}}</p>
+    <hr>
+  </article>
+</template>
